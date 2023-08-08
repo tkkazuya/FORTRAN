@@ -34,6 +34,7 @@ DataFrameの列なかである文字列に関する条件を満たすものを�
 ```df.sort_values( 'カラム名', acsending = True or False )```
 
 デフォルトは昇順で、```acsending = False```とすることで降順にできる。
+
 その他は以下を参照
 <https://note.nkmk.me/python-pandas-sort-values-sort-index/>
 
