@@ -17,6 +17,43 @@ pd.concat( [df1,df2], axis=0 or 1, join='条件' )
 - ```inner``` 内部結合。共通の列・行のみが残る。
 - ```outer``` 外部結合。すべての行・列が残る。
 
+### pd.to_datetime( )
+
+日時を表した文字列の```pandas.Series```を```Timestamp```型に変換する。
+
+```python
+pd.to_datetime(df['列名'], format='書式')
+```
+
+```format```を指定しない場合、```yyyy-mm-dd 00:00:00```として返ってくる。```format```の書式は次の通り。
+
+- ```%Y``` 年
+- ```%m``` 月
+- ```%d``` 日
+- ```%H``` 時間
+- ```%M``` 分
+- ```%S``` 秒
+- ```%w``` 整数表記された曜日（0:日曜日）
+
+#### dtアクセサ
+
+```pansdas.Series```全体に日時処理を適用するアクセサ。年月日、曜日などを抽出でき、```pandas.Series```が返ってくる。
+
+```python
+pd.to_datetime(df['列名'], format='書式').dt.属性
+```
+
+属性には次のようなものがある。
+
+- ```year``` 年
+- ```month``` 月
+- ```day``` 日
+- ```hour``` 時間
+- ```minute``` 分
+- ```second``` 秒
+- ```week_name``` 曜日（文字列）
+- ```dayofweek``` 曜日（数値）
+
 ## DataFrame.メソッド
 
 ### agg( )
