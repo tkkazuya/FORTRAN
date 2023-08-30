@@ -19,9 +19,63 @@ pd.concat( [df1,df2], axis=0 or 1, join='条件' )
 
 ## DataFrame.メソッド
 
+### agg( )
+
+引数に適用したい関数や処理を**リスト**で指定すると、各列で処理が行われて```pandas.DataFrame```型が返ってくる。
+
+```python
+df.agg([ '処理1', '処理2', ... ])
+```
+
+要素数が一つでもリストで指定した場合は```pandas.DataFrame```型が返ってくる。リストではなく文字列を単独で指定した場合は```pandas.Series```型が返ってくる。
+
+さらに、```key```を列名、```value```を適用する処理とした**辞書型**を指定すると各列に異なる処理を行うことができる。
+
+```python
+df.agg({'列名1' : ['処理1', '処理2'], '列名2' : ['処理3', '処理4']})
+```
+
+```処理```の部分は自作した関数や```lambda```式なども用いることができる。
+
+### groupby( )
+
+データをグルーピングする。さらに、その後各グループ内での平均、最小値、最大値、合計などを算出したり、任意の関数で処理することが可能である。```GroupBy```オブジェクトとして返ってくる。
+
+```python
+df.groupby('列名')
+```
+
+さらに、これに対して様々な統計量を算出するためのメソッドがある。
+
+```python
+df.groupby('列名').メソッド
+```
+
+メソッドには次のものがあり、各グループの値を返す。
+
+- ```min()``` 最小値
+- ```max()``` 最大値
+- ```sum()``` 合計値
+- ```mean()``` 平均値
+- ```std()``` 標準偏差
+- ```var()``` 分散
+
+### sort_values( )
+
+要素でソートし、```pandas.DataFrame```型を返す。
+
+```python
+df.sort_values( 'カラム名', acsending = True or False )
+```
+
+デフォルトは昇順で、```acsending = False```とすることで降順にできる。
+
+その他は次を参照：
+<https://note.nkmk.me/python-pandas-sort-values-sort-index/>
+
 ### query( )
 
-DataFrameの行を条件で抽出し、DataFrame型を返す。
+DataFrameの行を条件で抽出し、```pandas.DataFrame```型を返す。
 
 ```python
 df.query( '条件文', engine='python' )
@@ -52,19 +106,6 @@ DataFrameの列なかである文字列に関する条件を満たすものを�
 
 参照：
 <https://qiita.com/hiroyuki_mrp/items/29e87bf5fe46de62983c>
-
-### sort_values( )
-
-要素でソートする。
-
-```python
-df.sort_values( 'カラム名', acsending = True or False )
-```
-
-デフォルトは昇順で、```acsending = False```とすることで降順にできる。
-
-その他は次を参照：
-<https://note.nkmk.me/python-pandas-sort-values-sort-index/>
 
 ### rank( )
 
